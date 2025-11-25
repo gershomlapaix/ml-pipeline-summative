@@ -1,36 +1,36 @@
 # Core ML/DL Libraries
 tensorflow
-keras==2.13.1
+keras
 numpy
 scikit-learn
 pandas
 
 # Image Processing
-opencv-python==4.8.0.74
-Pillow==10.0.0
+opencv-python
+Pillow
 
 # Web Framework & API
-Flask==2.3.2
-Flask-CORS==4.0.0
-gunicorn==21.2.0
+Flask
+Flask-CORS
+gunicorn
 
 # Data Visualization
-matplotlib==3.7.2
-seaborn==0.12.2
+matplotlib
+seaborn
 
 # Load Testing
-locust==2.15.1
+locust
 
 # Utilities
-python-dotenv==1.0.0
-requests==2.31.0
+python-dotenv
+requests
 
 # Model Serialization
-h5py==3.9.0
-pickle5==0.0.12
+# h5py
+# pickle5
 
 # Progress Bars
-tqdm==4.66.1
+tqdm
 
 # File handling
-werkzeug==2.3.6
+werkzeug
