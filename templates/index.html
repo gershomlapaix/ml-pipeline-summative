@@ -76,7 +76,7 @@
                         <label class="block mb-2 text-sm font-medium">Upload Image</label>
                         <input type="file" id="imageUpload" accept="image/*" class="block w-full text-sm text-gray-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700 cursor-pointer">
                     </div>
-                    <button onclick="predictImage()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition">
+                    <button type="button" onclick="predictImage(event)" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition">
                         Predict
                     </button>
                     
@@ -166,6 +166,7 @@
         // Global variables
         let charts = {};
         const API_BASE = 'http://localhost:5000';
+        // const API_BASE = 'http://traffic-net-ml:5000';
 
         // Tab switching
         function showTab(tabName) {
@@ -215,7 +216,8 @@
         }
 
         // Predict image
-        async function predictImage() {
+        async function predictImage(e) {
+            e.preventDefault();
             const fileInput = document.getElementById('imageUpload');
             const file = fileInput.files[0];
             
@@ -438,7 +440,7 @@
                             labels: Object.keys(data.prediction_stats.class_distribution),
                             datasets: [{
                                 data: Object.values(data.prediction_stats.class_distribution),
-                                backgroundColor: ['#3b82f6', '#ef4444', '#f59e0b', '#10b981']
+                                backgroundColor: ['#3b82f6', '#ef4444', '#f59e0b', '#10b981'],
                             }]
                         },
                         options: {

@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # Main application service
+  traffic-net-app:
+    build: .
+    container_name: traffic-net-ml
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./uploads:/app/uploads
+      - ./logs:/app/logs
+    environment:
+      - FLASK_ENV=production
+      - MODEL_PATH=/app/models/traffic_net_model.h5
+    restart: unless-stopped
+    networks:
+      - traffic-net-network
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G
+
+  # Nginx reverse proxy (optional - for production)
+  nginx:
+    image: nginx:alpine
+    container_name: traffic-net-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - traffic-net-app
+    networks:
+      - traffic-net-network
+    restart: unless-stopped
+
+networks:
+  traffic-net-network:
+    driver: bridge
+
+volumes:
+  model-data:
+  upload-data:
